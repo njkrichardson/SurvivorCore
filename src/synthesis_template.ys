@@ -1,0 +1,7 @@
+read -sv DESIGN_PATH
+hierarchy -top TOP_MODULE
+proc; fsm; opt; memory; opt 
+
+techmap; opt 
+
+write_json JSON_PATH
