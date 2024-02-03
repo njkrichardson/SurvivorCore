@@ -20,6 +20,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --yes \
     bison \
     clang \
     build-essential \
+    nodejs \
     flex \
     gdb \
     gperf \
@@ -64,10 +65,11 @@ RUN cd / \
     && make \
     && make install
 
-
-## configure neovim 
-#RUN git clone https://github.com/neovim/neovim && cd neovim && git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo && make install 
-#RUN mkdir /.config && cd / && git clone https://github.com/njkrichardson/nvimconfig.git && cp -r nvimconfig /.config/nvim 
-#RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# install netlistsvg 
+RUN cd / \
+    && git clone https://github.com/nturley/netlistsvg \
+    && cd netlistsvg \
+    && npm install \
+    && npm install -g .
 
 CMD ["/bin/zsh"]
