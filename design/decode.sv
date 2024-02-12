@@ -1,4 +1,4 @@
-module decoder(
+module instruction_decoder(
     input logic [1:0] operation, 
     input logic [4:0] function, 
     input logic [3:0] destination, 

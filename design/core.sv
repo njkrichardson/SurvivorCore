@@ -4,14 +4,6 @@
 
 */ 
 
-module inverter #(parameter num_bits=8)
-    (
-	input logic [num_bits-1:0] a, 
-	output logic [num_bits-1:0] y
-	); 
-	assign y = ~a; 
-endmodule
-
 module tristate_buffer #(parameter num_bits)
     (
 	input logic [num_bits-1:0] a, 
@@ -79,4 +71,3 @@ module extender(
     ); 
 
 endmodule 
-

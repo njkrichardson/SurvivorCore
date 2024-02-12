@@ -22,7 +22,7 @@ module controller(
             _write_memory, 
 
 
-        decoder d(
+        instruction_decoder d(
             /*operation=*/instruction[27:26], 
             /*function=*/instruction[25:20], 
             /*destination=*/instruction[15:12], 
