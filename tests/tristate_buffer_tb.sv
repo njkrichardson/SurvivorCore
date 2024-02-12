@@ -3,7 +3,7 @@ module testbench_tristate_buffer();
     logic [3:0]     a, out, expected; 
     logic           en; 
     logic [31:0]    vector_num, errors; 
-    logic [8:0]     test_vectors[31:0]; 
+    logic [8:0]     test_vectors[32:0]; 
 
     // instantiate DUT 
     tristate_buffer #(4) dut(a, en, out); 
@@ -18,7 +18,7 @@ module testbench_tristate_buffer();
     initial 
         begin 
             $display("Reading memory..."); 
-            $readmemb("vectors/tristate_buffer_4b.tv", test_vectors, 0, 31);
+            $readmemb("vectors/tristate_buffer_4b.tv", test_vectors, 0, 32);
             $display("Finished reading memory..."); 
             vector_num = 0; errors = 0; 
             reset = 1; #27; reset = 0; 
@@ -41,7 +41,7 @@ module testbench_tristate_buffer();
                 errors = errors + 1; 
                 end 
             vector_num = vector_num + 1; 
-            if (test_vectors[vector_num] === 7'bx) begin 
+            if (test_vectors[vector_num] === 9'bx) begin 
                 $display("%d tests completed with %d errors", vector_num, errors); 
                 $finish; 
             end 
