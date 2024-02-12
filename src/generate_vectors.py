@@ -37,6 +37,19 @@ def generate_mux2_test_vectors(num_bits):
 
     return test_vectors
 
+def generate_decoder_test_vectors(num_bits): 
+    input_combinations = generate_all_input_combinations(num_bits)
+    test_vectors = []
+
+    for a in input_combinations: 
+        binary_string = ''.join(map(str, a))
+        a_decimal = int(binary_string, 2)
+        y = ['0'] * (2**num_bits)
+        y[-(a_decimal + 1)] = '1'
+        test_vectors.append(tuple(a) + (''.join(y),))
+
+    return test_vectors
+
 def save_test_vectors_to_file(module_name, num_bits, test_vectors):
     filename = VECTORS_DIRECTORY / f"{module_name}_{num_bits}b.tv"
     string_representation = ''.join(str(item) for item in test_vectors[0])
@@ -63,6 +76,11 @@ def main():
     # 2-way multiplexer
     test_vectors = generate_mux2_test_vectors(bit_width)
     module_name = "mux2"
+    save_test_vectors_to_file(module_name, bit_width, test_vectors)
+
+    # decoder
+    test_vectors = generate_decoder_test_vectors(bit_width)
+    module_name = "decoder"
     save_test_vectors_to_file(module_name, bit_width, test_vectors)
 
 if __name__=="__main__": 

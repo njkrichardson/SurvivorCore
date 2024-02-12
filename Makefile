@@ -17,3 +17,7 @@ test : tests/mux2_tb.sv
 	# mux2 
 	docker exec hdl iverilog -g2005-sv -o tests/bin/mux2_tb ./design/core.sv ./tests/mux2_tb.sv 
 	docker exec hdl ./tests/bin/mux2_tb
+
+	# decoder
+	docker exec hdl iverilog -g2005-sv -o tests/bin/decoder_tb ./design/core.sv ./tests/decoder_tb.sv 
+	docker exec hdl ./tests/bin/decoder_tb
