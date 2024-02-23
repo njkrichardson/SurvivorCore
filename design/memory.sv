@@ -19,7 +19,9 @@ module data_memory #(parameter address_width = 32, parameter word_width = 32, pa
     output logic [word_width-1:0] read_data
     );
     logic [word_width-1:0] RAM[num_words-1:0];
+    /* verilator lint_off WIDTH */
     logic [address_width-3:0] word_aligned_address = address[address_width-1:2]; 
+    /* lint_on */
 
     // truncate the least signifcant two bits of the address (word alignment)
     assign read_data = RAM[word_aligned_address]; 
@@ -33,10 +35,12 @@ module instruction_memory #(parameter address_width = 32, parameter word_width =
     output logic [word_width-1:0] read_data
     );
 
+    /* verilator lint_off WIDTH */
     logic [word_width-1:0] RAM[num_words-1:0];
     logic [address_width-3:0] word_aligned_address = address[address_width-1:2]; 
- //   initial
-//        $readmemh("REPLACEME", RAM);
+    /* lint_on */
+    initial
+        $readmemh("vectors/basic.dat", RAM);
 
     // truncate the least signifcant two bits of the address (word alignment)
     assign read_data = RAM[word_aligned_address]; 

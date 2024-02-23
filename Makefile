@@ -9,15 +9,22 @@ stop :
 shell : 
 	docker exec -it hdl /bin/zsh 
 
-test : tests/mux2_tb.sv 
-	# tristate buffer
-	docker exec hdl iverilog -g2005-sv -o tests/bin/tristate_buffer_tb ./design/core.sv ./tests/tristate_buffer_tb.sv 
-	docker exec hdl ./tests/bin/tristate_buffer_tb
-	
-	# mux2 
-	docker exec hdl iverilog -g2005-sv -o tests/bin/mux2_tb ./design/core.sv ./tests/mux2_tb.sv 
-	docker exec hdl ./tests/bin/mux2_tb
+test : tests/test_load_memory.cpp
+	# instruction memory 
+	docker exec hdl verilator --trace --cc --top-module instruction_memory design/memory.sv --exe tests/test_load_memory.cpp
+	docker exec hdl make -C obj_dir -f Vinstruction_memory.mk Vinstruction_memory
+	docker exec hdl ./obj_dir/Vinstruction_memory
 
-	# decoder
-	docker exec hdl iverilog -g2005-sv -o tests/bin/decoder_tb ./design/core.sv ./tests/decoder_tb.sv 
-	docker exec hdl ./tests/bin/decoder_tb
+test_core : tests/test_single_cycle.cpp
+	docker exec hdl verilator --trace --cc --top-module processor design/processor.sv \
+		design/memory.sv \
+		design/single_cycle_arm.sv \
+		design/controller.sv \
+		design/core.sv \
+		design/state.sv \
+		design/datapath.sv \
+		design/alu.sv \
+		design/decode.sv \
+		--exe tests/test_single_cycle.cpp
+	docker exec hdl make -C obj_dir -f Vprocessor.mk Vprocessor
+	docker exec hdl ./obj_dir/Vprocessor

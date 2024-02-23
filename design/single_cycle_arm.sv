@@ -2,7 +2,7 @@
 * 
 */
 
-module processor(
+module arm(
     input logic clock, reset, 
     input logic [31:0] instruction, 
     input logic [31:0] read_data, 
