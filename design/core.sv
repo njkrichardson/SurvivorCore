@@ -71,9 +71,9 @@ module extender(
     ); 
     always_comb 
         case(immediate_source)
-            2b'00:  result = {24b'0, immediate[7:0]}; // 8-bit unsigned immediate 
-            2b'01:  result = {20'b0, immediate[11:0]}; // 12-bit unsigned immediate 
-            2b'10:  result = {{6{immediate[23}}, immediate[23:0], 2'b00}; 
+            2'b00:  result = {24'b0, immediate[7:0]}; // 8-bit unsigned immediate 
+            2'b01:  result = {20'b0, immediate[11:0]}; // 12-bit unsigned immediate 
+            2'b10:  result = {{6{immediate[23]}}, immediate[23:0], 2'b00}; 
             default: result = 32'bx; 
     endcase 
 endmodule 

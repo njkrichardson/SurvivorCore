@@ -47,7 +47,7 @@ module datapath(
     extender ext(instruction[23:0], immediate_source, extended_immediate); 
     
     // ALU logic 
-    mux2 #(32) sourceb_mux(write_data, extended_immediate, ALU_source_b); 
+    mux2 #(32) sourceb_mux(write_data, extended_immediate, ALU_source, ALU_source_b); 
     alu _alu(ALU_source_a, ALU_source_b, ALU_control, ALU_result, ALU_flags); 
 
 endmodule; 
