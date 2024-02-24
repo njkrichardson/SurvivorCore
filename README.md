@@ -20,7 +20,7 @@ $ make test_core
 
 ### Waveforms 
 
-Verilator provides a C++ interface to dump [VCD](https://en.wikipedia.org/wiki/Value_change_dump#:~:text=Value%20change%20dump%20(VCD)%20(,Standard%201364%2D1995%20in%201996.) files tracing interface and internal processor signals for debugging and viewing waveforms (for instance, in a GTK+ viwer). Our tests dump VCD files to the `vcds` directory at the project level, which can be viewed using: 
+Verilator provides a C++ interface to dump [VCD](https://en.wikipedia.org/wiki/Value_change_dump#:~:text=Value%20change%20dump%20(VCD)%20,Standard%201364%2D1995%20in%201996.) files tracing interface and internal processor signals for debugging and viewing waveforms (for instance, in a GTK+ viwer). Our tests dump VCD files to the `vcds` directory at the project level, which can be viewed using: 
 
 ```bash
 $ gtkwave vcds/*.vcd & 
