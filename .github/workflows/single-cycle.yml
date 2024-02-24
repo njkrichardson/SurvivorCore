@@ -1,4 +1,4 @@
-name: Test Arm single-cycle processor. 
+name: ArmSC
 
 on: push
 
