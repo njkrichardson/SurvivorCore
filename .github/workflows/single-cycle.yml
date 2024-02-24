@@ -1,0 +1,17 @@
+name: Test Arm single-cycle processor. 
+
+on: 
+  workflow_dispatch
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest 
+
+    steps: 
+      - uses: actions/checkout@v2 
+      - name: Build image 
+        run: make 
+      - name: Run image 
+        run: make run 
+      - name: Run tests 
+        run: make test_core 
