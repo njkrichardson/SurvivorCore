@@ -2,12 +2,10 @@ setup :
 	docker build --tag hdl:latest . 
 
 run :
-	docker run -dt -v $(shell pwd):"/circuit_design" --name hdl hdl:latest /bin/zsh 
+	docker run -dt -v $(shell pwd):"/circuit_design" --name hdl hdl:latest /bin/bash
+
 clean :
 	docker stop hdl && docker rm hdl 
-
-shell : 
-	docker exec -it hdl /bin/zsh 
 
 format : 
 	docker exec hdl clang-format --verbose -i --style=Google tests/*.cpp
