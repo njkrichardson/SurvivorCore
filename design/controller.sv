@@ -78,6 +78,7 @@ module conditional_logic(
     assign pc_source = _pc_source & conditionally_execute; 
     assign write_register = _write_register & conditionally_execute; 
     assign write_memory = _write_memory & conditionally_execute; 
+    assign write_flag = _write_flag & {2{conditionally_execute}}; 
 endmodule
 
 module condition_parser(
