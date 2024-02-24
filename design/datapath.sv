@@ -30,7 +30,6 @@ module datapath(
     // register file logic 
     register_file rf(
         clock, 
-        reset, 
         write_register, 
         register_address1, register_address2, 
         /*A3=*/instruction[15:12], 

@@ -49,10 +49,17 @@ module resettable_flop_async #(parameter num_bits)
 endmodule 
 
 module register_file(
-    input logic clock, reset, 
+    input logic clock, 
     input logic write_enable, 
     input logic [3:0] address1, address2, address3, 
     input logic [31:0] write_data, program_counter, 
     output logic [31:0] read1, read2
     ); 
+    logic [31:0] rf[14:0]; 
+
+    always_ff @(posedge clock)
+        if (write_enable) rf[address3] <= write_data; 
+
+    assign read1 = (address1 == 4'b1111) ? program_counter : rf[address1]; 
+    assign read2 = (address2 == 4'b1111) ? program_counter : rf[address2]; 
 endmodule 
