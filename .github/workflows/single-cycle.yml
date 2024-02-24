@@ -1,7 +1,6 @@
 name: Test Arm single-cycle processor. 
 
-on: 
-  workflow_dispatch
+on: push
 
 jobs: 
   build: 
