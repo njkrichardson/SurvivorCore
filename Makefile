@@ -9,6 +9,9 @@ clean :
 shell : 
 	docker exec -it hdl /bin/zsh 
 
+format : 
+	docker exec hdl clang-format --verbose -i --style=Google tests/*.cpp
+
 test : tests/test_load_memory.cpp
 	# instruction memory 
 	docker exec hdl verilator --trace --cc --top-module instruction_memory design/memory.sv --exe tests/test_load_memory.cpp

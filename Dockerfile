@@ -10,6 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --yes \
     gdb \
     wget \
     cmake \
+    clang-format \
     verilator
 
 CMD ["/bin/zsh"]
